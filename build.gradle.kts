@@ -16,6 +16,9 @@ dependencies {
     implementation("com.fifesoft:rsyntaxtextarea:3.3.3")
     implementation("com.formdev:flatlaf:3.5.4")
     testImplementation("com.approvaltests:approvaltests:23.0.0")
+    implementation("org.ow2.asm:asm:9.6")
+    implementation("org.ow2.asm:asm-util:9.6") // Optional, for utilities
+
 }
 
 tasks.test {

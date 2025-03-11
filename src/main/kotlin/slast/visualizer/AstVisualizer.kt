@@ -39,7 +39,7 @@ fun parseProgram(input: String, errorListModel: DefaultListModel<String>): Slast
 
 fun SlastNode.toTreeNode(): DefaultMutableTreeNode {
     return when (this) {
-        is CompilationUnit -> DefaultMutableTreeNode("Program").apply { stmt.forEach { add(it.toTreeNode()) } }
+        is CompilationUnit -> DefaultMutableTreeNode("CompilationUnit").apply { stmt.forEach { add(it.toTreeNode()) } }
         is LetStmt -> DefaultMutableTreeNode("LetStmt(${this.prettyPrint()})").apply {
             add(DefaultMutableTreeNode("id=${name}"))
             add(expr.toTreeNode())
@@ -51,12 +51,12 @@ fun SlastNode.toTreeNode(): DefaultMutableTreeNode {
         }
 
         is FunPureStmt -> DefaultMutableTreeNode("FunPure(${name})").apply {
-            params.forEach { add(DefaultMutableTreeNode(it)) }
+            add(DefaultMutableTreeNode("parameters: ${params.joinToString(", ")}"))
             add(body.toTreeNode())
         }
 
         is FunImpureStmt -> DefaultMutableTreeNode("FunImpure(${name})").apply {
-            params.forEach { add(DefaultMutableTreeNode(it)) }
+            add(DefaultMutableTreeNode("parameters: ${params.joinToString(", ")}"))
             add(body.toTreeNode())
         }
 
